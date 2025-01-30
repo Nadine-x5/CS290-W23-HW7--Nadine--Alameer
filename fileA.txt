@@ -1,1 +1,1 @@
-Feature 1 enhancement
+Fix for feature 1 bug
