@@ -168,7 +168,7 @@
             Don't have an account? <a href="new_user.html">New User</a>
         </div>
         <div class="signup-link" style="margin-top: 0.5rem;">
-            <a href="reset_password.html">Forgot Password? Reset</a> <!-- رابط إعادة تعيين كلمة المرور -->
+            <a href="reset_password.html">Forgot Password? Reset</a>
         </div>
     </div>
 
@@ -184,7 +184,6 @@
                 return;
             }
 
-            // Validate username requirements
             if (!validateUsername(username)) {
                 showError('Username must be at least 5 characters long and contain at least one number.');
                 return;
@@ -192,12 +191,12 @@
 
             const storedCredentials = JSON.parse(localStorage.getItem('credentials')) || {};
 
-            // Check if username already exists
             if (storedCredentials[username]) {
-                // Check if the password matches
                 if (storedCredentials[username] !== password) {
                     showError('Username or password is incorrect.');
                     return;
+                } else {
+                    localStorage.setItem('loggedInUser', username); // Store username
                 }
             } else {
                 showError('Username does not exist.');
@@ -215,37 +214,6 @@
             const lengthValid = username.length >= 5;
             const numberValid = /\d/.test(username);
             return lengthValid && numberValid;
-        }
-
-        function validatePassword(password) {
-            const lengthRequirement = document.getElementById('length-requirement');
-            const specialCharacterRequirement = document.getElementById('special-character-requirement');
-            const numberRequirement = document.getElementById('number-requirement');
-
-            let isValid = true;
-
-            if (password.length < 8) {
-                lengthRequirement.classList.add('invalid');
-                isValid = false;
-            } else {
-                lengthRequirement.classList.remove('invalid');
-            }
-
-            if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-                specialCharacterRequirement.classList.add('invalid');
-                isValid = false;
-            } else {
-                specialCharacterRequirement.classList.remove('invalid');
-            }
-
-            if ((password.match(/\d/g) || []).length < 2) {
-                numberRequirement.classList.add('invalid');
-                isValid = false;
-            } else {
-                numberRequirement.classList.remove('invalid');
-            }
-
-            return isValid;
         }
 
         function showError(message) {
