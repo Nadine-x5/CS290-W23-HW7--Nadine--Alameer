@@ -1,0 +1,44 @@
+name: Password Validator Tests
+
+on: [push]  # Runs whenever you push code to GitHub
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest  # Uses a clean Linux machine
+    
+    steps:
+    # 1. Download the code
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    # 2. Setup Node.js (needed to run JavaScript tests)
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # Uses Node.js version 16
+    
+    # 3. Install dependencies
+    - name: Install packages
+      run: npm install
+    
+    # 4. Run the tests
+    - name: Run functional tests
+      run: npm test tests/functional/
+    
+    - name: Run performance tests
+      run: npm test tests/non-functional/
+    
+    # 5. Create a nice test report
+    - name: Generate HTML report
+      run: |
+        npm install jest-html-reporter
+        npm test -- --json --outputFile=test-results.json
+        npx jest-html-reporter
+      
+    # 6. Save the report as a downloadable file
+    - name: Upload test report
+      uses: actions/upload-artifact@v2
+      with:
+        name: password-test-report
+        path: test-report.html
