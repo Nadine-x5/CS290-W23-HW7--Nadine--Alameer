@@ -5,6 +5,6 @@ export default function () {
   let res = http.get('https://nadine-project.netlify.app/Login2.html');
   check(res, {
     'status is 200': (r) => r.status === 200,
-  });
+  }); 
   sleep(1);
 }
