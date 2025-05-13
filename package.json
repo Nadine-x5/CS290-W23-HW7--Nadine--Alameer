@@ -1,23 +1,10 @@
 {
-  "name": "cs290-w23-hw7--nadine--alameer",
+  "name": "skyline-project",
   "version": "1.0.0",
-  "description": "Assingment 7  Riyadh Metro is one of the largest transportation projects in the Kingdom, designed to provide a modern and efficient transit system that reduces traffic congestion and enhances urban mobility. The metro operates through a comprehensive management system that organizes trips, calculates distances, and optimizes passenger movement.  In our project, we developed a graph-based system to simulate route calculations within the metro network using an Adjacency Matrix. This representation allows for analyzing station connections, determining the shortest paths, and improving the commuting experience.",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Nadine-x5/CS290-W23-HW7--Nadine--Alameer.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Nadine-x5/CS290-W23-HW7--Nadine--Alameer/issues"
-  },
-  "homepage": "https://github.com/Nadine-x5/CS290-W23-HW7--Nadine--Alameer#readme",
-  "dependencies": {
-    "express": "^5.1.0"
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
